@@ -6,7 +6,7 @@ import Home from '@/app/(root)/page';
 test('Pages Router', () => {
   render(<Home />);
 
-  const button = screen.getByRole('button', { name: /Click me/i });
+  const button = screen.getByText(/latest books/i);
 
   expect(button).toBeInTheDocument();
 });
