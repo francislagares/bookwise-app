@@ -5,6 +5,7 @@ import BookCover from '@/components/BookCover';
 import { Button } from '@/components/ui/button';
 
 import { cn } from '@/lib/utils';
+import { Book } from '@/types';
 
 const BookCard = ({
   id,

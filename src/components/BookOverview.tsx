@@ -1,5 +1,7 @@
 import Image from 'next/image';
 
+import { Book } from '@/types';
+
 import BookCover from './BookCover';
 import { Button } from './ui/button';
 
