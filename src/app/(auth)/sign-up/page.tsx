@@ -4,14 +4,14 @@ import AuthForm from '@/components/AuthForm';
 
 import { signUpSchema } from '@/lib/validations';
 
-const SignUp = () => (
+const Page = () => (
   <AuthForm
     type='SIGN_UP'
     schema={signUpSchema}
     defaultValues={{
-      fullName: '',
       email: '',
       password: '',
+      fullName: '',
       universityId: 0,
       universityCard: '',
     }}
@@ -19,4 +19,4 @@ const SignUp = () => (
   />
 );
 
-export default SignUp;
+export default Page;

@@ -8,9 +8,8 @@ import { IKImage, IKUpload, IKVideo, ImageKitProvider } from 'imagekitio-next';
 
 import { toast } from '@/hooks/use-toast';
 
-import { cn } from '@/lib/utils';
-
 import config from '@/lib/config';
+import { cn } from '@/lib/utils';
 
 const {
   env: {
@@ -59,7 +58,7 @@ const FileUpload = ({
   onFileChange,
   value,
 }: Props) => {
-  const ikUploadRef = useRef(null);
+  const ikUploadRef = useRef<HTMLInputElement>(null);
   const [file, setFile] = useState<{ filePath: string | null }>({
     filePath: value ?? null,
   });
@@ -148,13 +147,12 @@ const FileUpload = ({
           e.preventDefault();
 
           if (ikUploadRef.current) {
-            // @ts-ignore
             ikUploadRef.current?.click();
           }
         }}
       >
         <Image
-          src='/icons/upload.svg'
+          src='/assets/icons/upload.svg'
           alt='upload-icon'
           width={20}
           height={20}
@@ -179,14 +177,14 @@ const FileUpload = ({
       {file &&
         (type === 'image' ? (
           <IKImage
-            alt={file.filePath}
-            path={file.filePath}
+            alt={file.filePath!}
+            path={file.filePath!}
             width={500}
             height={300}
           />
         ) : type === 'video' ? (
           <IKVideo
-            path={file.filePath}
+            path={file.filePath!}
             controls={true}
             className='h-96 w-full rounded-xl'
           />

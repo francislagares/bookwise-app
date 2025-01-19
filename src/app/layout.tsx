@@ -5,6 +5,7 @@ import type { Metadata } from 'next';
 import { Bebas_Neue, IBM_Plex_Sans } from 'next/font/google';
 
 import '@/app/globals.css';
+import { Toaster } from '@/components/ui/toaster';
 
 const bebasNeue = Bebas_Neue({
   weight: '400',
@@ -30,6 +31,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
         className={`${ibmPlexSans.className} ${bebasNeue.variable} antialiased`}
       >
         {children}
+        <Toaster />
       </body>
     </html>
   );

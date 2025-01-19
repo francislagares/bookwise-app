@@ -14,6 +14,7 @@ import {
 } from 'react-hook-form';
 import { ZodType } from 'zod';
 
+import FileUpload from '@/components/FileUpload';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -24,6 +25,8 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+
+import { toast } from '@/hooks/use-toast';
 
 import { FIELD_NAMES, FIELD_TYPES } from '@/constants';
 
@@ -51,6 +54,23 @@ const AuthForm = <T extends FieldValues>({
 
   const handleSubmit: SubmitHandler<T> = async data => {
     const result = await onSubmit(data);
+
+    if (result.success) {
+      toast({
+        title: 'Success',
+        description: isSignIn
+          ? 'You have successfully signed in.'
+          : 'You have successfully signed up.',
+      });
+
+      router.push('/');
+    } else {
+      toast({
+        title: `Error ${isSignIn ? 'signing in' : 'signing up'}`,
+        description: result.error ?? 'An error occurred.',
+        variant: 'destructive',
+      });
+    }
   };
 
   return (
@@ -79,12 +99,25 @@ const AuthForm = <T extends FieldValues>({
                     {FIELD_NAMES[field.name as keyof typeof FIELD_NAMES]}
                   </FormLabel>
                   <FormControl>
-                    <Input
-                      required
-                      type={FIELD_TYPES[field.name as keyof typeof FIELD_TYPES]}
-                      {...field}
-                      className='form-input'
-                    />
+                    {field.name === 'universityCard' ? (
+                      <FileUpload
+                        type='image'
+                        accept='image/*'
+                        placeholder='Upload your ID'
+                        folder='ids'
+                        variant='dark'
+                        onFileChange={field.onChange}
+                      />
+                    ) : (
+                      <Input
+                        required
+                        type={
+                          FIELD_TYPES[field.name as keyof typeof FIELD_TYPES]
+                        }
+                        {...field}
+                        className='form-input'
+                      />
+                    )}
                   </FormControl>
                   <FormMessage />
                 </FormItem>
