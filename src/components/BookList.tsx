@@ -1,9 +1,11 @@
+import { Book } from '@/types';
+
 import BookCard from './BookCard';
 
 type BookListProps = {
   title: string;
   books: Book[];
-  containerClassName: string;
+  containerClassName?: string;
 };
 
 const BookList = ({ title, books, containerClassName }: BookListProps) => {

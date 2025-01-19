@@ -4,8 +4,12 @@ import type { Metadata } from 'next';
 
 import { Bebas_Neue, IBM_Plex_Sans } from 'next/font/google';
 
-import '@/app/globals.css';
+import { SessionProvider } from 'next-auth/react';
+
 import { Toaster } from '@/components/ui/toaster';
+
+import '@/app/globals.css';
+import { auth } from 'auth';
 
 const bebasNeue = Bebas_Neue({
   weight: '400',
@@ -24,15 +28,19 @@ export const metadata: Metadata = {
     'BookWise is a book borrowing university library management solution.',
 };
 
-const RootLayout = ({ children }: { children: ReactNode }) => {
+const RootLayout = async ({ children }: { children: ReactNode }) => {
+  const session = await auth();
+
   return (
     <html lang='en'>
-      <body
-        className={`${ibmPlexSans.className} ${bebasNeue.variable} antialiased`}
-      >
-        {children}
-        <Toaster />
-      </body>
+      <SessionProvider session={session}>
+        <body
+          className={`${ibmPlexSans.className} ${bebasNeue.variable} antialiased`}
+        >
+          {children}
+          <Toaster />
+        </body>
+      </SessionProvider>
     </html>
   );
 };

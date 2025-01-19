@@ -1,4 +1,4 @@
-interface Book {
+export interface Book {
   id: string;
   title: string;
   author: string;
@@ -15,7 +15,7 @@ interface Book {
   createdAt: Date | null;
 }
 
-interface AuthCredentials {
+export interface AuthCredentials {
   fullName: string;
   email: string;
   password: string;
@@ -23,7 +23,7 @@ interface AuthCredentials {
   universityCard: string;
 }
 
-interface BookParams {
+export interface BookParams {
   title: string;
   author: string;
   genre: string;
@@ -36,7 +36,7 @@ interface BookParams {
   summary: string;
 }
 
-interface BorrowBookParams {
+export interface BorrowBookParams {
   bookId: string;
   userId: string;
 }
