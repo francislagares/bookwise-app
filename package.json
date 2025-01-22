@@ -10,6 +10,7 @@
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio",
+    "db:seed": "pnpx tsx src/database/seed.ts",
     "test:ci": "vitest run",
     "test:watch": "vitest watch --ui",
     "test:coverage": "vitest run --coverage",
