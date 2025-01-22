@@ -8,7 +8,9 @@ import { eq } from 'drizzle-orm';
 
 import { db } from '@/database/drizzle';
 import { users } from '@/database/schema';
+import config from '@/lib/config';
 import ratelimit from '@/lib/rateLimit';
+import { workflowClient } from '@/lib/workflow';
 import { AuthCredentials } from '@/types';
 import { signIn } from 'auth';
 
@@ -69,13 +71,13 @@ export const signUp = async (params: AuthCredentials) => {
       universityCard,
     });
 
-    /*     await workflowClient.trigger({
+    await workflowClient.trigger({
       url: `${config.env.prodApiEndpoint}/api/workflows/onboarding`,
       body: {
         email,
         fullName,
       },
-    }); */
+    });
 
     await signInWithCredentials({ email, password });
 
