@@ -13,6 +13,7 @@ export interface Book {
   summary: string;
   isLoanedBook?: boolean;
   createdAt: Date | null;
+  userId?: string;
 }
 
 export interface AuthCredentials {
